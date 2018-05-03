@@ -1,12 +1,13 @@
 QuickStart Hands-On Exercises
+-----------------------------
 
 This repo contains labs used in DDS QuickStart training, C++11 version. Before
 any given lab can be compiled and run, rtiddsgen should be run on the \*.idl
 file in each directory. When performing this step, be sure to set the following:
-    - Generation: Example Files = "<disable>"
-    - Generation: Type files = "update"
-    - Generation: Makefiles = "create"
-    - Language = "Modern C++ (C++ 11)
+- Generation: Example Files = "<disable>"
+- Generation: Type files = "update"
+- Generation: Makefiles = "create"
+- Language = "Modern C++ (C++ 11)"
 
 Lab 1. Out Of The Box
 
