@@ -73,7 +73,7 @@ void publisher_main(int domain_id, int sample_count)
         writer.write(sample);
 
         // LAB #3 - shorten the sending period to .1s (10Hz)
-        rti::util::sleep(dds::core::Duration(0, 10000000));
+        rti::util::sleep(dds::core::Duration(0, 100000000));
     }
 }
 
