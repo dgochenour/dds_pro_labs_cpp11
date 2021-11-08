@@ -1,5 +1,5 @@
-# RTI Connext Professional Hands-On Exercises (C++11 version)
------------------------------
+# RTI Connext Professional Hands-On Exercises 
+# (C++11 version)
 
 This repo contains labs used in DDS QuickStart training, C++11 version. Before
 any given lab can be compiled and run, rtiddsgen should be run on the \*.idl
@@ -18,7 +18,17 @@ file in each directory. When performing this step, be sure to set the following:
     - update publication_name and subscription_name with meaningful values (student names, etc.)
     - replace the local schema URL with a remote one
 
-## Lab 2. Deadline Qos
+## Lab 2. Loading a user-defined XML QoS profile
+
+  - Rename `USER_QOS_PROFILES.xml` as `MY_QOS_PROFILES.xml`
+    - Use Admin Console to confirm that the DDS entity names created in ex01 are no longer present-- that is becuase the newly-named file is not loaded by default like `USER_QOS_PROFILES.xml` was.
+  - rename the library to "MyLibrary" and profile to "MyProfile"
+  - remove is_default_qos="true" from MyProfile
+  - change publisher and subscriber code to use custom qosProvider
+    - NOTE: in the publisher, you need to add
+        #include <dds/core/ddscore.hpp>
+
+## Lab 3. Deadline Qos
 
   - Set deadline to 1.0 sec. on DataReader
   - Discuss why not working. (QoS mismatch)
@@ -27,7 +37,7 @@ file in each directory. When performing this step, be sure to set the following:
     - In C++98 documentation, search for DDS_QosPolicyId_t; here you can match "4" to "DDS_DEADLINE_QOS_POLICY_ID"
   - Fix Writer to offer Deadline of 500ms
 
-## Lab 3. Time Based Filter
+## Lab 4. Time Based Filter
 
   - Speed up writer to 10HZ.
   - Note that Reader is getting swamped.
@@ -35,13 +45,13 @@ file in each directory. When performing this step, be sure to set the following:
   - Note any possible Syncopation and discuss that.
 
 
-## Lab 4. Keys and defining constants in the IDL.
+## Lab 5. Keys and defining constants in the IDL.
 
   - Update IDL to add //@key and set unique key value per student
   - Also, add a constant string to the IDL for topic name and make changes in pub & sub to use this string.
   - Restart pubs and subs and discuss output.
 
-## Lab 5. Ownership and fail rollover.
+## Lab 6. Ownership and fail rollover.
 
   - In QoS XML, set EXCLUSIVE_OWNERSHIP_QOS on both Reader and writer.
   - Set Strength to unique value for each student. (assuming unique key values from last lab)
@@ -52,16 +62,6 @@ file in each directory. When performing this step, be sure to set the following:
 
   (If everyone is not connected to the same network, demonstrate Ownership using Shapes Demo on a
   single machine)
-
-## Lab 6. Loading a user-defined XML QoS profile
-
-  - Copy USER_QOS_PROFILES.xml to a new file called MY_QOS_PROFILES.xml
-  - rename the library to "MyLibrary" and profile to "MyProfile"
-  - remove is_default_qos="true" from MyProfile
-  - change DW and DR back to SHARED_OWNERSHIP_QOS
-  - change publisher and subscriber code to use custom qosProvider
-    - NOTE: in the publisher, you need to add
-        #include <dds/core/ddscore.hpp>
 
 ## Lab 7. Listeners and Waitsets
 
