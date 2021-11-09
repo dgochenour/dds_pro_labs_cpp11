@@ -21,21 +21,26 @@
 
 void run_publisher_application(unsigned int domain_id, unsigned int sample_count)
 {
-    // DDS objects behave like shared pointers or value types
-    // (see https://community.rti.com/best-practices/use-modern-c-types-correctly)
+    // LAB #2 - Create a (non-default) qosProvider, then create the entities 
+    // using explicitly names QoS profiles
+	std::string qosProfile;
+	qosProfile.clear();
+	qosProfile.append("MyLibrary").append("::").append("MyProfile");
+	dds::core::QosProvider qosProvider("file://MY_QOS_PROFILES.xml", qosProfile);
 
-    // Start communicating in a domain, usually one participant per application
-    dds::domain::DomainParticipant participant(domain_id);
+	dds::domain::DomainParticipant participant(domain_id, qosProvider.participant_qos());
 
-    // Create a Topic with a name and a datatype
-    dds::topic::Topic<acme::Pose> topic(participant, "Example acme_Pose");
+    dds::topic::Topic<acme::Pose> topic (participant, "Example acme_Pose");
 
-    // Create a Publisher
-    dds::pub::Publisher publisher(participant);
+    dds::pub::Publisher publisher(participant, qosProvider.publisher_qos());
 
-    // Create a DataWriter with default QoS
-    dds::pub::DataWriter<acme::Pose> writer(publisher, topic);
-
+    dds::pub::DataWriter<acme::Pose> writer(
+            publisher,
+            topic,
+            qosProvider.datawriter_qos(),
+            NULL, // no listener
+            dds::core::status::StatusMask::all());
+            
     acme::Pose data;
     for (unsigned int samples_written = 0;
     !application::shutdown_requested && samples_written < sample_count;

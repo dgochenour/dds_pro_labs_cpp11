@@ -23,10 +23,8 @@ file in each directory. When performing this step, be sure to set the following:
   - Rename `USER_QOS_PROFILES.xml` as `MY_QOS_PROFILES.xml`
     - Use Admin Console to confirm that the DDS entity names created in ex01 are no longer present-- that is becuase the newly-named file is not loaded by default like `USER_QOS_PROFILES.xml` was.
   - rename the library to "MyLibrary" and profile to "MyProfile"
-  - remove is_default_qos="true" from MyProfile
+  - remove `is_default_qos="true"` from MyProfile
   - change publisher and subscriber code to use custom qosProvider
-    - NOTE: in the publisher, you need to add
-        #include <dds/core/ddscore.hpp>
 
 ## Lab 3. Deadline Qos
 
