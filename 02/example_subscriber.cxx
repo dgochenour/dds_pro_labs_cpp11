@@ -40,15 +40,25 @@ int process_data(dds::sub::DataReader<acme::Pose> reader)
 
 void run_subscriber_application(unsigned int domain_id, unsigned int sample_count)
 {
-    // Start communicating in a domain, usually one participant per application
-    dds::domain::DomainParticipant participant(domain_id);
+    // LAB #2 - Create a (non-default) qosProvider, then create the entities 
+    // using explicitly names QoS profiles
+	std::string qosProfile;
+	qosProfile.clear();
+	qosProfile.append("MyLibrary").append("::").append("MyProfile");
+	dds::core::QosProvider qosProvider("file://MY_QOS_PROFILES.xml", qosProfile);
 
-    // Create a Topic with a name and a datatype
-    dds::topic::Topic<acme::Pose> topic(participant, "Example acme_Pose");
+	dds::domain::DomainParticipant participant(domain_id, qosProvider.participant_qos());
 
-    // Create a Subscriber and DataReader with default Qos
-    dds::sub::Subscriber subscriber(participant);
-    dds::sub::DataReader<acme::Pose> reader(subscriber, topic);
+    dds::topic::Topic<acme::Pose> topic (participant, "Example acme_Pose");
+
+    dds::sub::Subscriber subscriber(participant, qosProvider.subscriber_qos());
+
+    dds::sub::DataReader<acme::Pose> reader(
+            subscriber, 
+            topic,
+            qosProvider.datareader_qos(), 
+            NULL,
+            dds::core::status::StatusMask::none());
 
     // Create a ReadCondition for any data received on this reader and set a
     // handler to process the data
