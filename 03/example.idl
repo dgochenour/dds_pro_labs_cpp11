@@ -6,12 +6,31 @@
 //*                                                                           *
 //*****************************************************************************
 
-module qs {
+module acme {
 
-    struct qs_type {
-        long id;
-        long value1;
-        boolean condition1;
-        string<128> name;
+    // LAB #3 - add string constants
+    const string pose_topic_name = "Pose Topic";
+    const string qos_library = "MyLibrary";
+    const string qos_profile = "MyProfile";
+
+    @nested
+    struct Point {
+        double x;
+        double y;
+        double z;
+    };
+
+    @nested
+    struct Quaternion {
+        double x;
+        double y;
+        double z;
+        double w;
+    };
+
+    struct Pose {
+        @key long obj_id;
+        Point position;
+        Quaternion orientation;
     };
 };
