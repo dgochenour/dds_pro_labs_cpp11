@@ -26,7 +26,19 @@ file in each directory. When performing this step, be sure to set the following:
   - remove `is_default_qos="true"` from MyProfile
   - change publisher and subscriber code to use custom qosProvider
 
-## Lab 3. Deadline Qos
+## Lab 3. Replacing string literals in the source
+
+  - We can declare const strings in the IDL so that string literals do not have to be manually entered in source. Let's do that for:
+    - The Topic name
+    - The QoS library and profile
+  - The type support code now needs to be regaenerated
+    - Generation: Example Files = "<disable>"
+    - Generation: Type files = "update"
+    - Generation: Makefiles = "<disable>"
+    - Language = "Modern C++ (C++ 11)"
+  - Update `example_publisher.cxx` and `example_subscriber.cxx` to use these constants.
+
+## Lab xx Deadline Qos
 
   - Set deadline to 1.0 sec. on DataReader
   - Discuss why not working. (QoS mismatch)
@@ -35,7 +47,7 @@ file in each directory. When performing this step, be sure to set the following:
     - In C++98 documentation, search for DDS_QosPolicyId_t; here you can match "4" to "DDS_DEADLINE_QOS_POLICY_ID"
   - Fix Writer to offer Deadline of 500ms
 
-## Lab 4. Time Based Filter
+## Lab xx Time Based Filter
 
   - Speed up writer to 10HZ.
   - Note that Reader is getting swamped.
@@ -43,13 +55,13 @@ file in each directory. When performing this step, be sure to set the following:
   - Note any possible Syncopation and discuss that.
 
 
-## Lab 5. Keys and defining constants in the IDL.
+## Lab xx Keys and defining constants in the IDL.
 
   - Update IDL to add //@key and set unique key value per student
   - Also, add a constant string to the IDL for topic name and make changes in pub & sub to use this string.
   - Restart pubs and subs and discuss output.
 
-## Lab 6. Ownership and fail rollover.
+## Lab xx Ownership and fail rollover.
 
   - In QoS XML, set EXCLUSIVE_OWNERSHIP_QOS on both Reader and writer.
   - Set Strength to unique value for each student. (assuming unique key values from last lab)
@@ -61,7 +73,7 @@ file in each directory. When performing this step, be sure to set the following:
   (If everyone is not connected to the same network, demonstrate Ownership using Shapes Demo on a
   single machine)
 
-## Lab 7. Listeners and Waitsets
+## Lab xx Listeners and Waitsets
 
   - Modify the subscriber code so that the read is done via a listener instead of the default waitset
   - don't forget to add the private count_ var in the listener class and update main while loop
@@ -70,7 +82,7 @@ file in each directory. When performing this step, be sure to set the following:
     - after talking about this, remove the data_available mask to rerturn the the waitset
   - Note that the waitset is actually a better approach in terms of not blocking the DDS threads
 
-## Lab 8. Reliability.
+## Lab xx Reliability.
 
   - remove base_name="BuiltinQosLibExp::Generic.StrictReliable" from QoS
   - remove TBF and deadline QoS from DW and DR (just to clean things up)
@@ -81,7 +93,7 @@ file in each directory. When performing this step, be sure to set the following:
   - Discuss writer write speed.
   - Set up writer protocol to correct.
 
-## Lab 9. Late Joiner History.
+## Lab xx Late Joiner History.
 
   - Set Writer and Reader Durability to TRANSIENT_LOCAL_DURABILITY_QOS.
   - Set History to KEEP_LAST_HISTORY_QOS, depth 10. Vary by students.
@@ -90,7 +102,7 @@ file in each directory. When performing this step, be sure to set the following:
     - wait for errors from statically linked libs, discuss, then fix that in the makefile
   - Start Writer then Reader apps one at a time and discuss late joiner results.
 
-## Lab 10. Content Filtered topic
+## Lab xx Content Filtered topic
 
   - modify publisher to change the value of name on every other send
     - run pub and sub to verify that you are seeing the expected results
