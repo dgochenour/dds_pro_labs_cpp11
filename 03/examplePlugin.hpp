@@ -10,8 +10,8 @@ For more information, type 'rtiddsgen -help' at a command shell
 or consult the Code Generator User's Manual.
 */
 
-#ifndef examplePlugin_1944008529_h
-#define examplePlugin_1944008529_h
+#ifndef examplePlugin_1944008709_h
+#define examplePlugin_1944008709_h
 
 #include "example.hpp"
 
@@ -488,5 +488,5 @@ namespace acme {
 #define NDDSUSERDllExport
 #endif
 
-#endif /* examplePlugin_1944008529_h */
+#endif /* examplePlugin_1944008709_h */
 
