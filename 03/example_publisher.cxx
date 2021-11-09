@@ -21,16 +21,18 @@
 
 void run_publisher_application(unsigned int domain_id, unsigned int sample_count)
 {
+    // LAB #3 - remove string literals, use const strings from IDL
     // LAB #2 - Create a (non-default) qosProvider, then create the entities 
     // using explicitly names QoS profiles
 	std::string qosProfile;
 	qosProfile.clear();
-	qosProfile.append("MyLibrary").append("::").append("MyProfile");
+	qosProfile.append(acme::qos_library).append("::").append(acme::qos_profile);
 	dds::core::QosProvider qosProvider("file://MY_QOS_PROFILES.xml", qosProfile);
 
 	dds::domain::DomainParticipant participant(domain_id, qosProvider.participant_qos());
 
-    dds::topic::Topic<acme::Pose> topic (participant, "Example acme_Pose");
+    // LAB #3 - remove string literal, use const string from IDL
+    dds::topic::Topic<acme::Pose> topic (participant, acme::pose_topic_name);
 
     dds::pub::Publisher publisher(participant, qosProvider.publisher_qos());
 

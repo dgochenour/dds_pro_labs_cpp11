@@ -10,8 +10,8 @@ For more information, type 'rtiddsgen -help' at a command shell
 or consult the Code Generator User's Manual.
 */
 
-#ifndef example_1944008709_hpp
-#define example_1944008709_hpp
+#ifndef example_1944008704_hpp
+#define example_1944008704_hpp
 
 #include <iosfwd>
 
@@ -59,7 +59,7 @@ or consult the Code Generator User's Manual.
 
 namespace acme {
 
-    static const std::string pose_topic_name = "Pose Topic Name";
+    static const std::string pose_topic_name = "Pose Topic";
 
     static const std::string qos_library = "MyLibrary";
 
@@ -460,5 +460,5 @@ namespace rti {
 #define NDDSUSERDllExport
 #endif
 
-#endif // example_1944008709_hpp
+#endif // example_1944008704_hpp
 
