@@ -19,7 +19,7 @@
                         <sec>0</sec>
                         <nanosec>500000000</nanosec>
                     </period>
-                </deadline>                    -->
+                </deadline> -->
             </datawriter_qos>
                
             <datareader_qos>

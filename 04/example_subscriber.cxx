@@ -20,6 +20,25 @@
 #include "example.hpp"
 #include "application.hpp"  // for command line parsing and ctrl-c
 
+//  LAB #4 - add DataReader listener to note Qos Error.
+class MyReaderListener : public dds::sub::NoOpDataReaderListener<acme::Pose> {
+    
+public:
+
+    MyReaderListener() { }
+
+    void on_requested_incompatible_qos(
+            dds::sub::DataReader<acme::Pose>& reader, 
+            const dds::core::status::RequestedIncompatibleQosStatus & status) {
+
+        std::cout << "Incompatible Offered QoS: " << std::endl;
+        std::cout << "   Total Count: " << status.total_count() << std::endl;
+        std::cout << "   Total Count Change: " << status.total_count_change() << std::endl;
+        std::cout << "   Last Policy ID: " << status.last_policy_id() << std::endl;
+    }
+
+};
+
 int process_data(dds::sub::DataReader<acme::Pose> reader)
 {
     // Take all samples
@@ -55,12 +74,15 @@ void run_subscriber_application(unsigned int domain_id, unsigned int sample_coun
 
     dds::sub::Subscriber subscriber(participant, qosProvider.subscriber_qos());
 
+    // LAB #4 - instantiate listener and create reader with listener
+    MyReaderListener listener;
+
     dds::sub::DataReader<acme::Pose> reader(
             subscriber, 
             topic,
             qosProvider.datareader_qos(), 
-            NULL,
-            dds::core::status::StatusMask::none());
+            &listener, 
+            dds::core::status::StatusMask::requested_incompatible_qos());
 
     // Create a ReadCondition for any data received on this reader and set a
     // handler to process the data
