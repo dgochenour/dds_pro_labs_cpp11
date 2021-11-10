@@ -31,19 +31,18 @@ file in each directory. When performing this step, be sure to set the following:
   - We can declare const strings in the IDL so that string literals do not have to be manually entered in source. Let's do that for:
     - The Topic name
     - The QoS library and profile
-  - The type support code now needs to be regaenerated
+  - The type support code now needs to be regenerated
     - Generation: Example Files = "<disable>"
     - Generation: Type files = "update"
     - Generation: Makefiles = "<disable>"
     - Language = "Modern C++ (C++ 11)"
   - Update `example_publisher.cxx` and `example_subscriber.cxx` to use these constants.
 
-## Lab xx Deadline Qos
+## Lab 4. Deadline Qos
 
   - Set deadline to 1.0 sec. on DataReader
   - Discuss why not working. (QoS mismatch)
-  - Fix Reader listener to note Qos Error
-    - In C++11, note that we comment out and replace the default DataReader instantiation
+  - Add Reader listener to note Qos Error
     - In C++98 documentation, search for DDS_QosPolicyId_t; here you can match "4" to "DDS_DEADLINE_QOS_POLICY_ID"
   - Fix Writer to offer Deadline of 500ms
 
@@ -54,12 +53,6 @@ file in each directory. When performing this step, be sure to set the following:
   - Set Reader Time Based Filter Minimum separation to 1.0 sec (in Qos XML) and extend deadline to 1.5 Sec.
   - Note any possible Syncopation and discuss that.
 
-
-## Lab xx Keys and defining constants in the IDL.
-
-  - Update IDL to add //@key and set unique key value per student
-  - Also, add a constant string to the IDL for topic name and make changes in pub & sub to use this string.
-  - Restart pubs and subs and discuss output.
 
 ## Lab xx Ownership and fail rollover.
 
