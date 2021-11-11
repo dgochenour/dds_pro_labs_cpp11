@@ -58,9 +58,9 @@ file in each directory. When performing this step, be sure to set the following:
 ## Lab 6. Late Joiner History
 
   - Set Writer and Reader Durability to TRANSIENT_LOCAL_DURABILITY_QOS.
-  - Set History to KEEP_LAST_HISTORY_QOS, depth 10. Vary by students.
-  - Set Reader History to depth 15.
-  - Start Writer then Reader apps one at a time and discuss late joiner results.
+  - Set History to KEEP_LAST_HISTORY_QOS, depth 10 on the DataReader.
+  - Set History to KEEP_LAST_HISTORY_QOS, depth 15 on the DataWriter.
+  - Start Writer first, let it run for 10s or so, then start the Reader app and discuss late joiner results.
 
 ## Lab xx Content Filtered topic
 

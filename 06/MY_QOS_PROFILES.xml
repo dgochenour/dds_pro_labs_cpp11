@@ -26,7 +26,7 @@
                     <kind>RELIABLE_RELIABILITY_QOS</kind>
                 </reliability>  
                 <!-- LAB #5 - adjust HB timing -->
-                <!-- <protocol>	
+                <protocol>	
                     <rtps_reliable_writer>
                         <low_watermark>0</low_watermark>
                         <high_watermark>1</high_watermark>
@@ -43,7 +43,15 @@
                             <nanosec>100000000</nanosec>
                         </late_joiner_heartbeat_period>
                     </rtps_reliable_writer>
-                </protocol>                 -->
+                </protocol>
+                <!-- LAB #6 - Add durability, configure history -->
+                <durability>
+                    <kind>TRANSIENT_LOCAL_DURABILITY_QOS</kind>
+                </durability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>15</depth>
+                </history>                
             </datawriter_qos>
                
             <datareader_qos>
@@ -60,7 +68,15 @@
                 <!-- LAB #5 - specify reliability -->
                 <reliability>
                     <kind>RELIABLE_RELIABILITY_QOS</kind>
-                </reliability>                
+                </reliability>
+                <!-- LAB #6 - Add durability, configure history -->
+                <durability>
+                    <kind>TRANSIENT_LOCAL_DURABILITY_QOS</kind>
+                </durability>
+                <history>
+                    <kind>KEEP_LAST_HISTORY_QOS</kind>
+                    <depth>10</depth>
+                </history>                 
             </datareader_qos>
 
             <domain_participant_qos>
