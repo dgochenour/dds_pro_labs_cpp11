@@ -55,14 +55,12 @@ file in each directory. When performing this step, be sure to set the following:
   - Discuss writer write speed-- why did the data transfer slow down?
   - Speed up HB frequency in writer protocol to correct.
 
-## Lab xx Late Joiner History.
+## Lab 6. Late Joiner History
 
   - Set Writer and Reader Durability to TRANSIENT_LOCAL_DURABILITY_QOS.
-  - Set History to KEEP_LAST_HISTORY_QOS, depth 10. Vary by students.
-  - Set Reader History to depth 15.
-  - Add monitoring library support
-    - wait for errors from statically linked libs, discuss, then fix that in the makefile
-  - Start Writer then Reader apps one at a time and discuss late joiner results.
+  - Set History to KEEP_LAST_HISTORY_QOS, depth 10 on the DataReader.
+  - Set History to KEEP_LAST_HISTORY_QOS, depth 15 on the DataWriter.
+  - Start Writer first, let it run for 10s or so, then start the Reader app and discuss late joiner results.
 
 ## Lab xx Content Filtered topic
 
