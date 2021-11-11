@@ -56,9 +56,12 @@ void run_publisher_application(unsigned int domain_id, unsigned int sample_count
         std::cout << "Writing acme::Pose, count " << samples_written << std::endl;
 
         writer.write(data);
+        // LAB #5 - wait for acks
+        writer.wait_for_acknowledgments(dds::core::Duration::infinite());
 
         // LAB #1 - change sleep period to 500ms (500,000,000ns)
-        rti::util::sleep(dds::core::Duration(0, 500000000));
+        // LAB #5 - slow writer down to 1Hz
+        rti::util::sleep(dds::core::Duration(1, 0));
     }
 }
 

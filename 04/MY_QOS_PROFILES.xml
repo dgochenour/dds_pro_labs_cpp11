@@ -32,7 +32,7 @@
                         <sec>1</sec>
                         <nanosec>0</nanosec>
                     </period>
-                </deadline>                
+                </deadline>
             </datareader_qos>
 
             <domain_participant_qos>
