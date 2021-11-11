@@ -77,9 +77,16 @@ void run_subscriber_application(unsigned int domain_id, unsigned int sample_coun
     // LAB #4 - instantiate listener and create reader with listener
     MyReaderListener listener;
 
+    // LAB #7 - use a Content Filtered Topic
+    dds::topic::ContentFilteredTopic<acme::Pose> cft_topic = dds::core::null;
+    cft_topic = dds::topic::ContentFilteredTopic<acme::Pose>(
+            topic,
+            "ContentFilteredTopic",
+            dds::topic::Filter("position.x >= 0"));
+
     dds::sub::DataReader<acme::Pose> reader(
             subscriber, 
-            topic,
+            cft_topic, //topic,
             qosProvider.datareader_qos(), 
             &listener, 
             dds::core::status::StatusMask::requested_incompatible_qos());
