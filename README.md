@@ -62,11 +62,9 @@ file in each directory. When performing this step, be sure to set the following:
   - Set History to KEEP_LAST_HISTORY_QOS, depth 15 on the DataWriter.
   - Start Writer first, let it run for 10s or so, then start the Reader app and discuss late joiner results.
 
-## Lab xx Content Filtered topic
+## Lab 7. Content Filtered Topic
 
-  - modify publisher to change the value of name on every other send
-    - run pub and sub to verify that you are seeing the expected results
-  - Now modify subscriber code to add a cft
+  - Modify subscriber code to add a cft
     - add code to create the parameters and Filter
     - set the filter name
     - change the reader instantiation to use ContentFilteredTopic instead of normal topic
