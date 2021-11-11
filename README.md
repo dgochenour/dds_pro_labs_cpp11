@@ -46,45 +46,14 @@ file in each directory. When performing this step, be sure to set the following:
     - In C++98 documentation, search for DDS_QosPolicyId_t; here you can match "4" to "DDS_DEADLINE_QOS_POLICY_ID"
   - Fix Writer to offer Deadline of 500ms
 
-## Lab xx Time Based Filter
+## Lab 5. Reliability
 
-  - Speed up writer to 10HZ.
-  - Note that Reader is getting swamped.
-  - Set Reader Time Based Filter Minimum separation to 1.0 sec (in Qos XML) and extend deadline to 1.5 Sec.
-  - Note any possible Syncopation and discuss that.
-
-
-## Lab xx Ownership and fail rollover.
-
-  - In QoS XML, set EXCLUSIVE_OWNERSHIP_QOS on both Reader and writer.
-  - Set Strength to unique value for each student. (assuming unique key values from last lab)
-  - Note Results.
-  - Now have students all use the same key value (all writing to the same instance)
-  - Start running from lowest strength to highest strength.
-  - Kill apps from Highest to lowest strength.
-
-  (If everyone is not connected to the same network, demonstrate Ownership using Shapes Demo on a
-  single machine)
-
-## Lab xx Listeners and Waitsets
-
-  - Modify the subscriber code so that the read is done via a listener instead of the default waitset
-  - don't forget to add the private count_ var in the listener class and update main while loop
-    - point out that the message from the listener is printing, but so is the sleep message from the waitset
-    - why isn't the data printing twice?
-    - after talking about this, remove the data_available mask to rerturn the the waitset
-  - Note that the waitset is actually a better approach in terms of not blocking the DDS threads
-
-## Lab xx Reliability.
-
-  - remove base_name="BuiltinQosLibExp::Generic.StrictReliable" from QoS
-  - remove TBF and deadline QoS from DW and DR (just to clean things up)
-  - Set reliability to RELIABLE_RELIABILITY_QOS in Reader.
-  - Slow down writer to 1HZ.
-  - Discuss that the data is now coming in at 1Hz
+  - remove `base_name="BuiltinQosLibExp::Generic.StrictReliable"` from QoS
+  - Explicitly set reliability to RELIABLE_RELIABILITY_QOS in DatReader and DataWriter QoS.
+  - Slow down writer to 1HZ and confirm that data is received at this rate.
   - Now set writer to wait for reliable acknowledgements.
-  - Discuss writer write speed.
-  - Set up writer protocol to correct.
+  - Discuss writer write speed-- why did the data transfer slow down?
+  - Speed up HB frequency in writer protocol to correct.
 
 ## Lab xx Late Joiner History.
 
