@@ -9,19 +9,19 @@ file in each directory. When performing this step, be sure to set the following:
 - Generation: Makefiles = "create"
 - Language = "Modern C++ (C++ 11)"
 
-## Lab 00 "Out of the box", as-generated code
+## Lab 00 - "Out of the box", as-generated code
 
   - Create IDL, then generate code 
 ```
 $NDDSHOME/bin/rtiddsgen -language C++11 -create typefiles -create exampleFiles -create makefiles -platform x64Darwin17clang9.0 ./example.idl
 ```
 
-## Lab 1. Minor changes to make things more interesting
+## Lab 01 - Minor changes to make things more interesting
 
   - Give the sample members some values, just so we aren't writing empty data
   - Speed up the writes on the publisher side by reducing the sleep from 1s to 500ms 
   - In the QoS XML:
-    - update publication_name and subscription_name with meaningful values (student names, etc.)
+    - update publication_name and subscription_name with meaningful values (your name, etc.)
     - replace the local schema URL with a remote one
 
 ## Lab 2. Loading a user-defined XML QoS profile
