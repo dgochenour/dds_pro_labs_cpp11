@@ -9,9 +9,15 @@ file in each directory. When performing this step, be sure to set the following:
 - Generation: Makefiles = "create"
 - Language = "Modern C++ (C++ 11)"
 
-## Lab 1. Out Of The Box
+## Lab 00 "Out of the box", as-generated code
 
-  - Create IDL, then generate code
+  - Create IDL, then generate code 
+```
+$NDDSHOME/bin/rtiddsgen -language C++11 -create typefiles -create exampleFiles -create makefiles -platform x64Darwin17clang9.0 ./example.idl
+```
+
+## Lab 1. Minor changes to make things more interesting
+
   - Give the sample members some values, just so we aren't writing empty data
   - Speed up the writes on the publisher side by reducing the sleep from 1s to 500ms 
   - In the QoS XML:
