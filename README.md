@@ -18,6 +18,7 @@ $NDDSHOME/bin/rtiddsgen -language C++11 -create typefiles -create exampleFiles -
 
 ## Lab 01 - Minor changes to make things more interesting
 
+  - In the publisher's loop, change the generated code so that only non-keyed members are incrementally updated 
   - Give the sample members some values, just so we aren't writing empty data
   - Speed up the writes on the publisher side by reducing the sleep from 1s to 500ms 
   - In the QoS XML:
