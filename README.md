@@ -25,7 +25,7 @@ $NDDSHOME/bin/rtiddsgen -language C++11 -create typefiles -create exampleFiles -
     - update publication_name and subscription_name with meaningful values (your name, etc.)
     - replace the local schema URL with a remote one
 
-## Lab 2. Loading a user-defined XML QoS profile
+## Lab 02 - Loading a user-defined XML QoS profile
 
   - Rename `USER_QOS_PROFILES.xml` as `MY_QOS_PROFILES.xml`
     - Use Admin Console to confirm that the DDS entity names created in ex01 are no longer present-- that is becuase the newly-named file is not loaded by default like `USER_QOS_PROFILES.xml` was.
@@ -33,7 +33,7 @@ $NDDSHOME/bin/rtiddsgen -language C++11 -create typefiles -create exampleFiles -
   - remove `is_default_qos="true"` from MyProfile
   - change publisher and subscriber code to use custom qosProvider
 
-## Lab 3. Replacing string literals in the source
+## Lab 03 - Replacing string literals in the source
 
   - We can declare const strings in the IDL so that string literals do not have to be manually entered in source. Let's do that for:
     - The Topic name
@@ -45,7 +45,7 @@ $NDDSHOME/bin/rtiddsgen -language C++11 -create typefiles -create exampleFiles -
     - Language = "Modern C++ (C++ 11)"
   - Update `example_publisher.cxx` and `example_subscriber.cxx` to use these constants.
 
-## Lab 4. Deadline Qos
+## Lab 04 - Deadline Qos
 
   - Set deadline to 1.0 sec. on DataReader
   - Discuss why not working. (QoS mismatch)
@@ -53,7 +53,7 @@ $NDDSHOME/bin/rtiddsgen -language C++11 -create typefiles -create exampleFiles -
     - In C++98 documentation, search for DDS_QosPolicyId_t; here you can match "4" to "DDS_DEADLINE_QOS_POLICY_ID"
   - Fix Writer to offer Deadline of 500ms
 
-## Lab 5. Reliability
+## Lab 05 - Reliability
 
   - remove `base_name="BuiltinQosLibExp::Generic.StrictReliable"` from QoS
   - Explicitly set reliability to RELIABLE_RELIABILITY_QOS in DatReader and DataWriter QoS.
@@ -62,14 +62,14 @@ $NDDSHOME/bin/rtiddsgen -language C++11 -create typefiles -create exampleFiles -
   - Discuss writer write speed-- why did the data transfer slow down?
   - Speed up HB frequency in writer protocol to correct.
 
-## Lab 6. Late Joiner History
+## Lab 06 - Late Joiner History
 
   - Set Writer and Reader Durability to TRANSIENT_LOCAL_DURABILITY_QOS.
   - Set History to KEEP_LAST_HISTORY_QOS, depth 10 on the DataReader.
   - Set History to KEEP_LAST_HISTORY_QOS, depth 15 on the DataWriter.
   - Start Writer first, let it run for 10s or so, then start the Reader app and discuss late joiner results.
 
-## Lab 7. Content Filtered Topic
+## Lab 07 - Content Filtered Topic
 
   - Modify subscriber code to add a cft
     - add code to create the parameters and Filter
