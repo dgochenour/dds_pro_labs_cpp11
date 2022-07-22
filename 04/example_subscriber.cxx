@@ -31,10 +31,10 @@ public:
             dds::sub::DataReader<acme::Pose>& reader, 
             const dds::core::status::RequestedIncompatibleQosStatus & status) {
 
-        std::cout << "Incompatible Offered QoS: " << std::endl;
-        std::cout << "   Total Count: " << status.total_count() << std::endl;
-        std::cout << "   Total Count Change: " << status.total_count_change() << std::endl;
-        std::cout << "   Last Policy ID: " << status.last_policy_id() << std::endl;
+        std::cout << "INFO: Incompatible Offered QoS: " << std::endl;
+        std::cout << "\tTotal Count: " << status.total_count() << std::endl;
+        std::cout << "\tTotal Count Change: " << status.total_count_change() << std::endl;
+        std::cout << "\tLast Policy ID: " << status.last_policy_id() << std::endl;
     }
 
 };
