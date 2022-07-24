@@ -37,6 +37,22 @@ public:
         std::cout << "   Last Policy ID: " << status.last_policy_id() << std::endl;
     }
 
+    void on_requested_deadline_missed(
+            dds::sub::DataReader<acme::Pose>& reader,
+            const dds::core::status::RequestedDeadlineMissedStatus& status) {
+
+        if (status.total_count_change() > 0) {
+
+            acme::Pose the_key_holder;
+            reader.key_value(the_key_holder, status.last_instance_handle());
+            std::cout << "WARN: Missed deadline:\n"
+                    << "\tTopic = '" << reader.topic_description().name() << "'\n"
+                    << "\tInstance = " << the_key_holder.obj_id() 
+                    << std::endl;
+                        
+        }
+    }
+
 };
 
 int process_data(dds::sub::DataReader<acme::Pose> reader)
@@ -74,7 +90,8 @@ void run_subscriber_application(unsigned int domain_id, unsigned int sample_coun
 
     dds::sub::Subscriber subscriber(participant, qosProvider.subscriber_qos());
 
-    // LAB #4 - instantiate listener and create reader with listener
+    // LAB #4 - instantiate listener and create reader with listener... note the
+    // change to the StatusMask (last argument)
     MyReaderListener listener;
 
     // LAB #7 - use a Content Filtered Topic
@@ -89,7 +106,8 @@ void run_subscriber_application(unsigned int domain_id, unsigned int sample_coun
             cft_topic, //topic,
             qosProvider.datareader_qos(), 
             &listener, 
-            dds::core::status::StatusMask::requested_incompatible_qos());
+            dds::core::status::StatusMask::requested_incompatible_qos() |
+            dds::core::status::StatusMask::requested_deadline_missed());
 
     // Create a ReadCondition for any data received on this reader and set a
     // handler to process the data

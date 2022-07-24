@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
     } else if (arguments.parse_result == ParseReturn::failure) {
         return EXIT_FAILURE;
     }
-    setup_signal_handlers();
+    //setup_signal_handlers();
 
     // Sets Connext verbosity to help debugging
     rti::config::Logger::instance().verbosity(arguments.verbosity);
