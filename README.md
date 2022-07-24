@@ -49,9 +49,10 @@ $NDDSHOME/bin/rtiddsgen -language C++11 -create typefiles -create exampleFiles -
 
   - Set deadline to 1.0 sec. on DataReader
   - Discuss why not working. (QoS mismatch)
-  - Add Reader listener to note Qos Error
+  - Add Reader listener callback to note Qos Error
     - In C++98 documentation, search for DDS_QosPolicyId_t; here you can match "4" to "DDS_DEADLINE_QOS_POLICY_ID"
   - Fix Writer to offer Deadline of 500ms
+  - Add an additional listener callback to handle missed deadlines
 
 ## Lab 05 - Reliability
 
